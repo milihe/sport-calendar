@@ -8,10 +8,20 @@
 
     <table>
 
-
         <tr data-th-each="sport : ${sports}">
             <td data-th-text="${sport.getSportId}"></td>
             <td data-th-text="${sport.getSport}"></td>
+        </tr>
+    </table>
+
+    <table>
+
+        <tr data-th-each="event : ${events}">
+            <td data-th-text="${event.getEventId}"></td>
+            <td data-th-text="${event.getStart}"></td>
+            <td data-th-text="${event.getSport}"></td>
+            <td data-th-text="${event.getTeam1}"></td>
+            <td data-th-text="${event.getTeam2}"></td>
         </tr>
     </table>
 
