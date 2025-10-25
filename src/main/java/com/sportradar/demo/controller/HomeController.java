@@ -2,6 +2,7 @@ package com.sportradar.demo.controller;
 
 import com.sportradar.demo.Event;
 import com.sportradar.demo.Sport;
+import com.sportradar.demo.repository.EventRepository;
 import com.sportradar.demo.repository.SportRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.jdbc.core.JdbcTemplate;
@@ -25,10 +26,9 @@ public class HomeController {
         var sports = sportRepository.getSports();
         model.addAttribute("sports", sports);
 
-        var events = List.of(
-                new Event(1, Instant.now(), "handball", "Gyor", "Fradi"),
-                new Event(2, Instant.now(), "handball", "Bp", "Fradi")
-                );
+        var eventRepository = new EventRepository(jdbc);
+        var events = eventRepository.getEvents();
+
         model.addAttribute("events", events);
         return "home"; // This resolves to src/main/resources/templates/home.html
     }
