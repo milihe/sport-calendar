@@ -1,7 +1,5 @@
 package com.sportradar.demo.controller;
 
-import com.sportradar.demo.Event;
-import com.sportradar.demo.Sport;
 import com.sportradar.demo.repository.EventRepository;
 import com.sportradar.demo.repository.SportRepository;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -9,10 +7,7 @@ import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
-
-import java.time.Instant;
-import java.util.ArrayList;
-import java.util.List;
+import org.springframework.web.bind.annotation.RequestParam;
 
 @Controller
 public class HomeController {
@@ -21,7 +16,10 @@ public class HomeController {
     JdbcTemplate jdbc;
 
     @GetMapping("/")
-    public String home(Model model) {
+    public String home(Model model,
+                       @RequestParam(value = "sportId", required = false) String paramSportId) {
+        var sportId = parseIntegerParameter(paramSportId, -1);
+
         var sportRepository = new SportRepository(jdbc);
         var sports = sportRepository.getSports();
         model.addAttribute("sports", sports);
@@ -31,5 +29,14 @@ public class HomeController {
 
         model.addAttribute("events", events);
         return "home"; // This resolves to src/main/resources/templates/home.html
+    }
+
+    private static int parseIntegerParameter(String value, int defaultValue) {
+        try {
+            return Integer.parseInt(value);
+        }
+        catch (Exception ex) {
+            return  defaultValue;
+        }
     }
 }

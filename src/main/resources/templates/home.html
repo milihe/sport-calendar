@@ -5,25 +5,23 @@
 </head>
 
 <body>
+<form id="select-sport" action="/" method="get">
+    <select name="sportId" onchange="this.form.submit()">
+        <option value="-1">All sports</option>
+        <option th:each="sport : ${sports}" th:value="${sport.getSportId}" th:text="${sport.getSport}"></option>
+    </select>
+</form>
 
-    <table>
+<table>
 
-        <tr data-th-each="sport : ${sports}">
-            <td data-th-text="${sport.getSportId}"></td>
-            <td data-th-text="${sport.getSport}"></td>
-        </tr>
-    </table>
-
-    <table>
-
-        <tr data-th-each="event : ${events}">
-            <td data-th-text="${event.getEventId}"></td>
-            <td data-th-text="${event.getStart}"></td>
-            <td data-th-text="${event.getSport}"></td>
-            <td data-th-text="${event.getTeam1}"></td>
-            <td data-th-text="${event.getTeam2}"></td>
-        </tr>
-    </table>
+    <tr data-th-each="event : ${events}">
+        <td data-th-text="${event.getEventId}"></td>
+        <td data-th-text="${event.getStart}"></td>
+        <td data-th-text="${event.getSport}"></td>
+        <td data-th-text="${event.getTeam1}"></td>
+        <td data-th-text="${event.getTeam2}"></td>
+    </tr>
+</table>
 
 </body>
 
