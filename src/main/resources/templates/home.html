@@ -5,6 +5,9 @@
 </head>
 
 <body>
+
+<div th:replace="menu.html"></div>
+
 <form id="select-sport" action="/" method="get">
     <select name="sportId" onchange="this.form.submit()">
         <option>All sports</option>
@@ -16,10 +19,14 @@
     </select>
 </form>
 
-<table>
-
+<table class="myTable">
+    <tr>
+        <th>Start</th>
+        <th>Sport</th>
+        <th>Team</th>
+        <th>Team</th>
+    </tr>
     <tr data-th-each="event : ${events}">
-        <td data-th-text="${event.getEventId}"></td>
         <td data-th-text="${event.getStart}"></td>
         <td data-th-text="${event.getSport}"></td>
         <td data-th-text="${event.getTeam1}"></td>
