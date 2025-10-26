@@ -8,7 +8,11 @@
 <form id="select-sport" action="/" method="get">
     <select name="sportId" onchange="this.form.submit()">
         <option>All sports</option>
-        <option th:each="sport : ${sports}" th:value="${sport.getSportId}" th:text="${sport.getSport}"></option>
+        <option th:each="sport : ${sports}"
+                th:value="${sport.getSportId}"
+                th:text="${sport.getSport}"
+                th:selected="${sport.getSportId==selectedSportId}">
+        </option>
     </select>
 </form>
 

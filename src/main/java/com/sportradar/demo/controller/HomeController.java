@@ -23,6 +23,7 @@ public class HomeController {
     public String home(Model model,
                        @RequestParam(value = "sportId", required = false) String paramSportId) {
         var selectedSportId = parseIntegerParameter(paramSportId, unselectedValue);
+        model.addAttribute("selectedSportId", selectedSportId);
 
         var sportRepository = new SportRepository(jdbc);
         var sports = sportRepository.getSports();
