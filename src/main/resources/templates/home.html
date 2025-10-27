@@ -6,7 +6,7 @@
 
 <body>
 
-<div th:replace="menu.html"></div>
+<div th:replace="~{menu.html}"></div>
 
 <form id="select-sport" action="/" method="get">
     <select name="sportId" onchange="this.form.submit()">

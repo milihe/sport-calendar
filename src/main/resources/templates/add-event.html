@@ -2,12 +2,86 @@
 
 <head>
     <title>Sportradar</title>
+    <style>
+        .form-table td:nth-child(1) {
+            width: 70px
+        }
+
+        .form-table select {
+            width: 180px
+        }
+
+        .form-table input {
+            width: 180px
+        }
+    </style>
 </head>
 
 <body>
-    <div th:replace="menu.html"></div>
+<div th:replace="~{menu.html}"></div>
 
-    add event
+<div th:if="${error != null}">
+    <p th:text="${error}"></p>
+</div>
+
+<form id="select-sport" action="/add-event" method="get">
+    <table class="form-table">
+        <tr>
+            <td>Sport</td>
+            <td>
+                <select name="sportId" onchange="this.form.submit()">
+                    <option th:each="sport : ${sports}"
+                            th:value="${sport.getSportId}"
+                            th:text="${sport.getSport}"
+                            th:selected="${sport.getSportId==selectedSportId}">
+                    </option>
+                </select>
+            </td>
+        </tr>
+    </table>
+</form>
+
+<form id="add-event" action="/add-event" method="post">
+    <table class="form-table">
+        <tr>
+            <td>Start</td>
+            <td>
+                <input type="datetime-local" name="start" th:value="${start}"/>
+            </td>
+        </tr>
+        <tr>
+            <td>Team1</td>
+            <td>
+                <select name="teamId1">
+                    <option th:each="team : ${teams}"
+                            th:value="${team.getTeamId}"
+                            th:text="${team.getTeam}"
+                            th:selected="${#strings.toString(team.getTeamId)==teamId1}">
+                    </option>
+                </select>
+            </td>
+        </tr>
+        <tr>
+            <td>Team2</td>
+            <td>
+                <select name="teamId2">
+                    <option th:each="team : ${teams}"
+                            th:value="${team.getTeamId}"
+                            th:text="${team.getTeam}"
+                            th:selected="${#strings.toString(team.getTeamId)==teamId2}">
+                    </option>
+                </select>
+            </td>
+        </tr>
+        <tr>
+            <td></td>
+            <td>
+                <input type="hidden" name="sportId" th:value="${selectedSportId}" />
+                <input name="submit" type="submit" value="Add event" />
+            </td>
+        </tr>
+    </table>
+</form>
 
 </body>
 </html>

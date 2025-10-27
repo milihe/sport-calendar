@@ -5,6 +5,7 @@ import org.springframework.jdbc.core.JdbcTemplate;
 
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.time.Instant;
 import java.util.List;
 
 public class EventRepository {
@@ -36,7 +37,7 @@ public class EventRepository {
                 WHERE s.sportId = ?
                 ORDER BY start
                 """;
-        var parameters = new Object[] { sportId };
+        var parameters = new Object[]{sportId};
         return db.query(sql, this::mapRow, parameters);
     }
 
@@ -46,7 +47,13 @@ public class EventRepository {
                 rs.getTimestamp("start").toInstant(),
                 rs.getString("sport"),
                 rs.getString("team1"),
-                rs.getString("team1")
+                rs.getString("team2")
         );
+    }
+
+    public void addEvent(Instant start, int sportId, int teamId1, int teamId2) {
+        String sql = "INSERT INTO events (start, sportId, teamId1, teamId2) VALUES (?,?,?,?)";
+        var parameters = new Object[]{start, sportId, teamId1, teamId2};
+        db.update(sql, parameters);
     }
 }
