@@ -1,5 +1,6 @@
-package com.sportradar.demo;
+package com.sportradar.demo.domain;
 
+import com.sportradar.demo.LocalDateTimeConverter;
 import com.sportradar.demo.repository.SportRepository;
 import com.sportradar.demo.repository.TeamRepository;
 import org.springframework.ui.Model;

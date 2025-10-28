@@ -1,7 +1,7 @@
 package com.sportradar.demo.controller;
 
 import com.sportradar.demo.LocalDateTimeConverter;
-import com.sportradar.demo.Event;
+import com.sportradar.demo.domain.Event;
 import com.sportradar.demo.repository.EventRepository;
 import com.sportradar.demo.repository.SportRepository;
 import org.springframework.beans.factory.annotation.Autowired;

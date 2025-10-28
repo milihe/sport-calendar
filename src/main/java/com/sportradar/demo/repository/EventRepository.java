@@ -1,6 +1,6 @@
 package com.sportradar.demo.repository;
 
-import com.sportradar.demo.Event;
+import com.sportradar.demo.domain.Event;
 import org.springframework.jdbc.core.JdbcTemplate;
 
 import java.sql.ResultSet;

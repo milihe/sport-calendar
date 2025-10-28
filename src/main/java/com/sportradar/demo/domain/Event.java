@@ -1,4 +1,4 @@
-package com.sportradar.demo;
+package com.sportradar.demo.domain;
 
 import java.time.Instant;
 

@@ -1,6 +1,6 @@
 package com.sportradar.demo.controller;
 
-import com.sportradar.demo.AddEventForm;
+import com.sportradar.demo.domain.AddEventForm;
 import com.sportradar.demo.repository.EventRepository;
 import com.sportradar.demo.repository.SportRepository;
 import com.sportradar.demo.repository.TeamRepository;
