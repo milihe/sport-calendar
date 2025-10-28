@@ -27,7 +27,7 @@
         <th>Team</th>
     </tr>
     <tr data-th-each="event : ${events}">
-        <td data-th-text="${event.getStart}"></td>
+        <td data-th-text="${timeConverter.toLocalDateTimeText(event.getStart())}"></td>
         <td data-th-text="${event.getSport}"></td>
         <td data-th-text="${event.getTeam1}"></td>
         <td data-th-text="${event.getTeam2}"></td>

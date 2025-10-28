@@ -1,5 +1,6 @@
 package com.sportradar.demo.controller;
 
+import com.sportradar.demo.LocalDateTimeConverter;
 import com.sportradar.demo.Event;
 import com.sportradar.demo.repository.EventRepository;
 import com.sportradar.demo.repository.SportRepository;
@@ -37,6 +38,7 @@ public class HomeController {
             events = eventRepository.getEventsBySport(selectedSportId);
         }
         model.addAttribute("events", events);
+        model.addAttribute("timeConverter", new LocalDateTimeConverter());
         return "home"; // This resolves to src/main/resources/templates/home.html
     }
 

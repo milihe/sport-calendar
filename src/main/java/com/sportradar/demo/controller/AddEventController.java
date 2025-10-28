@@ -12,9 +12,6 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
-import java.time.LocalDateTime;
-import java.time.ZoneId;
-
 @Controller
 public class AddEventController {
     @Autowired
@@ -36,7 +33,7 @@ public class AddEventController {
                          @RequestParam(value = "teamId1") String paramTeamId1,
                          @RequestParam(value = "teamId2") String paramTeamId2) {
 
-        var addEventForm = new AddEventForm(paramSportId, paramStart, "Europe/Vienna", paramTeamId1, paramTeamId2);
+        var addEventForm = new AddEventForm(paramSportId, paramStart, paramTeamId1, paramTeamId2);
         var validationErrors = addEventForm.getValidationErrors();
         if (validationErrors.isEmpty()) {
             var eventRepository = new EventRepository(db);

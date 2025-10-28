@@ -5,8 +5,6 @@ import com.sportradar.demo.repository.TeamRepository;
 import org.springframework.ui.Model;
 
 import java.time.Instant;
-import java.time.LocalDateTime;
-import java.time.ZoneId;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -21,10 +19,11 @@ public class AddEventForm {
         sportId = tryParseInteger(paramSportId, 0);
     }
 
-    public AddEventForm(String paramSportId, String paramLocalStart, String timeZoneId, String paramTeamId1, String paramTeamId2) {
+    public AddEventForm(String paramSportId, String paramLocalStart, String paramTeamId1, String paramTeamId2) {
         sportId = tryParseInteger(paramSportId, 0);
         localStart = paramLocalStart;
-        start = tryParseInstant(paramLocalStart, timeZoneId);
+        var timeConverter = new LocalDateTimeConverter();
+        start = timeConverter.tryGetInstantFromLocalDateTime(paramLocalStart);
         teamId1 = tryParseInteger(paramTeamId1, 0);
         teamId2 = tryParseInteger(paramTeamId2, 0);
     }
@@ -99,15 +98,4 @@ public class AddEventForm {
             return defaultValue;
         }
     }
-
-    private Instant tryParseInstant(String localDateTimeValue, String timeZoneId) {
-        try {
-            var localDateTime = LocalDateTime.parse(localDateTimeValue);
-            return localDateTime.atZone(ZoneId.of(timeZoneId)).toInstant();
-        } catch (Exception ex) {
-            return null;
-        }
-    }
-
-
 }
