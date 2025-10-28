@@ -2,22 +2,11 @@
 
 <head>
     <title>Sportradar</title>
-    <style>
-        .form-table td:nth-child(1) {
-            width: 70px
-        }
-
-        .form-table select {
-            width: 180px
-        }
-
-        .form-table input {
-            width: 180px
-        }
-    </style>
+    <link href="style.css" rel="stylesheet"/>
 </head>
 
 <body>
+
 <div th:replace="~{menu.html}"></div>
 
 <div th:if="${error != null}">
