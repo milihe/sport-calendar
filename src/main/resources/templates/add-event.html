@@ -56,7 +56,7 @@
                     <option th:each="team : ${teams}"
                             th:value="${team.getTeamId}"
                             th:text="${team.getTeam}"
-                            th:selected="${#strings.toString(team.getTeamId)==teamId1}">
+                            th:selected="${team.getTeamId==teamId1}">
                     </option>
                 </select>
             </td>
@@ -68,7 +68,7 @@
                     <option th:each="team : ${teams}"
                             th:value="${team.getTeamId}"
                             th:text="${team.getTeam}"
-                            th:selected="${#strings.toString(team.getTeamId)==teamId2}">
+                            th:selected="${team.getTeamId==teamId2}">
                     </option>
                 </select>
             </td>
