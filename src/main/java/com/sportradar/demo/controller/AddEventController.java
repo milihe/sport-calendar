@@ -31,10 +31,10 @@ public class AddEventController {
 
     @PostMapping("/add-event")
     public String addEvent(Model model,
-                         @RequestParam(value = "sportId", required = false) String paramSportId,
-                         @RequestParam(value = "start", required = false) String paramStart,
-                         @RequestParam(value = "teamId1", required = false) String paramTeamId1,
-                         @RequestParam(value = "teamId2", required = false) String paramTeamId2) {
+                         @RequestParam(value = "sportId") String paramSportId,
+                         @RequestParam(value = "start") String paramStart,
+                         @RequestParam(value = "teamId1") String paramTeamId1,
+                         @RequestParam(value = "teamId2") String paramTeamId2) {
 
         var eventRepository = new EventRepository(jdbc);
         try {
@@ -46,13 +46,13 @@ public class AddEventController {
             var localStart = LocalDateTime.parse(paramStart);
             var start = localStart.atZone(ZoneId.of("Europe/Vienna")).toInstant();
 
-            var team1Id = Integer.parseInt(paramTeamId1);
-            var team2Id = Integer.parseInt(paramTeamId2);
-            if (team1Id == team2Id) {
+            var teamId1 = Integer.parseInt(paramTeamId1);
+            var teamId2 = Integer.parseInt(paramTeamId2);
+            if (teamId1 == teamId2) {
                 throw new IllegalArgumentException("Same team cannot be selected twice");
             }
 
-            eventRepository.addEvent(start, sportId, team1Id, team2Id);
+            eventRepository.addEvent(start, sportId, teamId1, teamId2);
         } catch (Exception ex) {
             var error = ex.getMessage();
             initializeModelForInputForm(model, paramSportId, paramStart, paramTeamId1, paramTeamId2, error);
@@ -67,8 +67,7 @@ public class AddEventController {
                                         String start,
                                         String teamId1,
                                         String teamId2,
-                                        String error
-    ) {
+                                        String error) {
 
         var sportRepository = new SportRepository(jdbc);
         var sports = sportRepository.getSports();
