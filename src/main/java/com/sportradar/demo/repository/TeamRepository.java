@@ -15,7 +15,7 @@ public class TeamRepository {
     }
 
     public List<Team> getTeamsBySportId(int sportId) {
-        String sql = "SELECT * FROM teams WHERE sportId = ? ORDER BY team";
+        String sql = "SELECT * FROM teams WHERE _sportId = ? ORDER BY team";
         var parameters = new Object[] {sportId};
         return db.query(sql, this::mapRow, parameters);
     }
@@ -23,7 +23,7 @@ public class TeamRepository {
     private Team mapRow(ResultSet rs, int rowNum) throws SQLException {
         return new Team(
                 rs.getInt("teamId"),
-                rs.getInt("sportId"),
+                rs.getInt("_sportId"),
                 rs.getString("team")
         );
     }

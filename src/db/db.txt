@@ -1,0 +1,66 @@
+CREATE SCHEMA `sradar` ;
+
+USE `sradar`;
+
+CREATE TABLE `sports` (
+  `sportId` int NOT NULL AUTO_INCREMENT,
+  `sport` varchar(45) NOT NULL,
+  PRIMARY KEY (`sportId`),
+  UNIQUE KEY `uq_sport` (`sport`)
+) ENGINE=InnoDB AUTO_INCREMENT=5 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+
+
+CREATE TABLE `teams` (
+  `teamId` int NOT NULL AUTO_INCREMENT,
+  `_sportId` int NOT NULL,
+  `team` varchar(100) NOT NULL,
+  PRIMARY KEY (`teamId`),
+  UNIQUE KEY `uq_sport_team` (`_sportId`,`team`),
+  CONSTRAINT `_fk_teams_sports_sportId` FOREIGN KEY (`_sportId`) REFERENCES `sports` (`sportId`)
+) ENGINE=InnoDB AUTO_INCREMENT=26 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+
+CREATE TABLE `events` (
+  `eventId` int NOT NULL AUTO_INCREMENT,
+  `start` datetime NOT NULL,
+  `_sportId` int NOT NULL,
+  `_teamId1` int NOT NULL,
+  `_teamId2` int NOT NULL,
+  PRIMARY KEY (`eventId`),
+  INDEX `idx_sportId` (`_sportId`),
+  INDEX `idx_teamId1` (`_teamId1`),
+  INDEX `idx_teamId2` (`_teamId2`),
+  CONSTRAINT `_fk_events_sports_sportId` FOREIGN KEY (`_sportId`) REFERENCES `sports` (`sportId`),
+  CONSTRAINT `_fk_events_teams_teamId1` FOREIGN KEY (`_teamId1`) REFERENCES `teams` (`teamId`),
+  CONSTRAINT `_fk_events_teams_teamId2` FOREIGN KEY (`_teamId2`) REFERENCES `teams` (`teamId`)
+) ENGINE=InnoDB AUTO_INCREMENT=10 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+
+INSERT INTO `sports` (`sportId`,`sport`) VALUES
+(1,'soccer'),
+(2,'hockey');
+
+INSERT INTO `teams` (`teamId`,`_sportId`,`team`) VALUES
+(1,1,'Red Bull Salzburg'),
+(2,1,'SK Sturm Graz'),
+(3,1,'Rapid Wien'),
+(4,1,'Wolfsberg'),
+(5,1,'Austria Wien'),
+(6,1,'Altach'),
+(7,1,'Ried'),
+(8,1,'Hartberg'),
+(9,2,'Val Pusteria'),
+(10,2,'HK Olimpija'),
+(11,2,'Bolzano'),
+(12,2,'Graz'),
+(13,2,'Salzburg'),
+(14,2,'Klagenfurt'),
+(15,2,'Villach'),
+(16,2,'Ferencváros');
+
+
+INSERT INTO `events` (`eventId`,`start`,`_sportId`,`_teamId1`,`_teamId2`) VALUES
+(1,'2025-12-02 18:15:00',2,9,16),
+(2,'2025-11-12 18:15:00',2,10,11),
+(3,'2025-09-22 19:15:00',2,12,13),
+(4,'2025-12-22 19:15:00',2,14,15),
+(5,'2025-12-13 20:45:00',1,2,4),
+(6,'2025-11-03 19:45:00',1,1,5);
