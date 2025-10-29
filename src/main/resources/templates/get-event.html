@@ -1,0 +1,33 @@
+<html xmlns:th="http://www.thymeleaf.org">
+
+<head>
+    <title>Sportradar</title>
+    <link href="style.css" rel="stylesheet"/>
+</head>
+
+<body>
+
+<div th:replace="~{menu.html}"></div>
+
+
+<table class="form-table">
+    <tr>
+        <td>Start</td>
+        <td th:text="${timeConverter.toLocalDateTimeText(event.getStart())}"></td>
+    </tr>
+    <tr>
+        <td>Sport</td>
+        <td th:text="${event.getSport}"></td>
+    </tr>
+    <tr>
+        <td>Team1</td>
+        <td th:text="${event.getTeam1}"></td>
+    </tr>
+    <tr>
+        <td>Team2</td>
+        <td th:text="${event.getTeam2}"></td>
+    </tr>
+</table>
+
+</body>
+</html>

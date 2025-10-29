@@ -22,16 +22,18 @@
 
 <table class="data-table">
     <tr>
+        <th>Id</th>
         <th>Start</th>
         <th>Sport</th>
         <th>Team</th>
         <th>Team</th>
     </tr>
-    <tr data-th-each="event : ${events}">
-        <td data-th-text="${timeConverter.toLocalDateTimeText(event.getStart())}"></td>
-        <td data-th-text="${event.getSport}"></td>
-        <td data-th-text="${event.getTeam1}"></td>
-        <td data-th-text="${event.getTeam2}"></td>
+    <tr th:each="event : ${events}">
+        <td><a th:href="${'/get-event?eventId=' + event.getEventId}" th:text="${event.getEventId}"></a></td>
+        <td th:text="${timeConverter.toLocalDateTimeText(event.getStart())}"></td>
+        <td th:text="${event.getSport}"></td>
+        <td th:text="${event.getTeam1}"></td>
+        <td th:text="${event.getTeam2}"></td>
     </tr>
 </table>
 

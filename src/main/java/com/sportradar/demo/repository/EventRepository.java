@@ -41,6 +41,24 @@ public class EventRepository {
         return db.query(sql, this::mapRow, parameters);
     }
 
+    public Event getEvent(int eventId) {
+        String sql = """
+                SELECT eventId, start, s.sport, t1.team team1, t2.team team2
+                FROM events e 
+                JOIN sports s ON s.sportId = e._sportId
+                JOIN teams t1 ON t1.teamId = e._teamId1
+                JOIN teams t2 ON t2.teamId = e._teamId2
+                WHERE e.eventId = ?
+                """;
+        var parameter = new Object[]{eventId};
+        var result = db.query(sql, this::mapRow, parameter);
+        if (result.size() > 0) {
+            return result.getFirst();
+        } else {
+            return null;
+        }
+    }
+
     private Event mapRow(ResultSet rs, int rowNum) throws SQLException {
         return new Event(
                 rs.getInt("eventId"),
