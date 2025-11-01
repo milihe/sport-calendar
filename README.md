@@ -44,7 +44,7 @@ Before starting, ensure you have the following installed:
 Open your terminal and run:
 
 ```bash
-git clone git clone https://github.com/milihe/sport-calendar.git
+git clone https://github.com/milihe/sport-calendar.git
 cd sport-calendar
 ```
 
