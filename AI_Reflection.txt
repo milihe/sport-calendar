@@ -1,0 +1,9 @@
+AI Usage Reflection
+
+For this project, I implemented the entire solution myself. I designed the overall structure, wrote the controller logic, set up the models, and created all the HTML templates. Every part of the code was written with the intention of understanding how each component fits together.
+
+While I developed the project independently, I occasionally used AI tools (such as ChatGPT, or AI Studio) for example writing parts of the Readme, and for guidance when I encountered specific technical challenges. For instance, I consulted AI to better understand how to include a shared navigation bar across multiple pages in Thymeleaf, and how to set certain HTML attributes dynamically from model data. These were not full code solutions — rather, they were clarifications or small examples that helped me understand the correct approach or syntax. After receiving suggestions, I carefully reviewed, adapted, and tested the implementations to ensure I fully understood how they worked and that they integrated correctly with my existing code.
+
+My technical decisions were driven by the goal of building a clean, maintainable, and modular application. Structuring the project with clear separation between controllers, data access layer, and views helped keep the codebase organized and easy to navigate.
+
+If I had more time, I would focus on improving the frontend and the user experience.
