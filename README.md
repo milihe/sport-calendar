@@ -14,6 +14,9 @@ It demonstrates core backend development principles and provides an example of h
 - **Server-Side Rendering:**  
   Uses **Thymeleaf** to dynamically generate HTML pages that display sports, teams, and events.
 
+## Entities
+![erd](./images/calendar_erd.png)
+
 ### UI Overview
 #### Listing events
 Clicking the event id will navigate to the detail page of the selected event.  
